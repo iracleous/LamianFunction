@@ -15,12 +15,14 @@ public class Function1
     }
 
 
-  //  http://localhost:7246/api/ReturnHtmlPage
-
+    //  http://localhost:7246/api/ReturnHtmlPage
+    // https://functer2025ab.azurewebsites.net/api/ReturnHtmlPage
 
     [Function("ReturnHtmlPage")]
     public static IActionResult Run(
-         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+      //   [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+ [HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req,
+
          ExecutionContext context,
          ILogger log)
     {
