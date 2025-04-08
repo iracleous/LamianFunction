@@ -3,22 +3,51 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace LamianFunction
+namespace LamianFunction;
+
+public class Function1
 {
-    public class Function1
+    private readonly ILogger<Function1> _logger;
+
+    public Function1(ILogger<Function1> logger)
     {
-        private readonly ILogger<Function1> _logger;
+        _logger = logger;
+    }
 
-        public Function1(ILogger<Function1> logger)
-        {
-            _logger = logger;
-        }
 
-        [Function("Function1")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
+  //  http://localhost:7246/api/ReturnHtmlPage
+
+
+    [Function("ReturnHtmlPage")]
+    public static IActionResult Run(
+         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+         ExecutionContext context,
+         ILogger log)
+    {
+        log.LogInformation("HTML page request received.");
+
+         
+ 
+
+        string htmlContent = """
+
+              <html>
+            <head>
+                <title>Welcome</title>
+            </head>
+            <body>
+                <h1>Hello from Azure Function!</h1>
+                <p>This is a static HTML page served by an Azure Function.</p>
+            </body>
+            </html>
+
+
+            """;
+        return new ContentResult
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions by University of Thessaly!");
-        }
+            Content = htmlContent,
+            ContentType = "text/html",
+            StatusCode = 200
+        };
     }
 }
