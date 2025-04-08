@@ -21,7 +21,7 @@ public class Function1
     [Function("ReturnHtmlPage")]
     public static IActionResult Run(
       //   [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
- [HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequest req,
+ [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
 
          ExecutionContext context,
          ILogger log)
