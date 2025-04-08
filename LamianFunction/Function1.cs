@@ -8,12 +8,7 @@ namespace LamianFunction;
 
 public class Function1
 {
-    private readonly ILogger<Function1> _logger;
-
-    public Function1(ILogger<Function1> logger)
-    {
-        _logger = logger;
-    }
+    
 
 
     //  http://localhost:7246/api/ReturnHtmlPage
@@ -46,11 +41,14 @@ public class Function1
 
 
             """;
-        return new ContentResult
-        {
-            Content = htmlContent,
-            ContentType = "text/html",
-            StatusCode = 200
-        };
+        //return new ContentResult
+        //{
+        //    Content = htmlContent,
+        //    ContentType = "text/html",
+        //    StatusCode = 200
+        //};
+
+
+        return new OkObjectResult("Hello from Azure Function!");
     }
 }
