@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
 namespace LamianFunction;
@@ -18,10 +19,10 @@ public class Function1
     //  http://localhost:7246/api/ReturnHtmlPage
     // https://functer2025ab.azurewebsites.net/api/ReturnHtmlPage
 
-    [Function("ReturnHtmlPage")]
+    [FunctionName("ReturnHtmlPage")]
     public static IActionResult Run(
       //   [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
- [HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req,
+ [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
 
          ExecutionContext context,
          ILogger log)
